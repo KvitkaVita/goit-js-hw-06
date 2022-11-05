@@ -1,11 +1,17 @@
 const inputEl = document.querySelector("#validation-input");
 
-inputEl.addEventListener("blur", () => {
-    if (inputEl.value.length === inputEl.dataset.length) {
-        return inputEl.classList.add("valid");
+const blurEl = (event) => {
+    if (event.currentTarget.value.length === Number(inputEl.dataset.length)) {
+        inputEl.classList.remove("invalid");
+        inputEl.classList.add("valid");  
+    } else {
+        inputEl.classList.add("invalid");
+        inputEl.classList.remove("valid"); 
     }
-    return inputEl.classList.add("invalid");
-})
+};
+
+inputEl.addEventListener("blur", blurEl);
+
 
 
 // Напиши скрипт, який під час втрати фокусу на інпуті (подія blur), 
@@ -30,3 +36,13 @@ inputEl.addEventListener("blur", () => {
 // }
 // #validation-input.invalid {
 //   border-color: #f44336;
+
+// inputEl.addEventListener("blur", () => {
+//     if (inputEl.value.length === inputEl.dataset.length) {
+// потрібно знімати класс інвелід
+//         return inputEl.classList.add("valid");
+//     }
+// потрібно знімати клас велід
+//     return inputEl.classList.add("invalid");
+// })
+// inputEl.dataset.length - ось це потрібно привести до числа, бо зараз це рядок
